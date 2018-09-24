@@ -1,0 +1,72 @@
+<div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+
+          <div class="card total-patient-report">
+              <div class="container">
+                <p>Patient {{patientData?.RunningPatientSL}}/{{patientData?.TotalPatient}}</p> 
+                <p>Report {{patientData?.RunningReportSL}}/{{patientData?.TotalReport}}</p> 
+              </div>
+            </div>
+            
+            <div class="patient-type">
+                <p>{{patientData?.PatientType}}</p> 
+            </div>
+            
+            <div class="patient-basic-info">
+                <span class="patient-name">Patient Name: {{patientData?.PatientName}} </span> 
+                <span class="patient-age">Patient age: {{patientData?.PatientAge}} </span> 
+                <span class="patient-location">Patient location: {{patientData?.PatientLocation}} </span> 
+              </div>
+              
+              
+              <div class="patient-basic-medical-info">
+                <span class="patient-weight">Patient Weight: {{patientData?.Weight}} </span> 
+                <span class="patient-height">Patient Height: {{patientData?.Height}} </span> 
+                <span class="patient-pressure">Patient Pressure: {{patientData?.Pressure}}</span> 
+              </div>   
+            <div class="row col-sm-12">
+                    <div class="row col-sm-4">
+                        <div  class="form-group col-sm-12">
+                                <label class="control-label" for="history">History:</label>
+                                <div class="">
+                                    <textarea class="form-control" rows="7" id="history">{{patientData?.PatientHistory}}</textarea>
+                                </div>
+                                </div>     
+                            </div> 
+                    <div class="row col-sm-4">
+                        <div  class="form-group col-sm-12">
+                                <label class="control-label" for="prescription">Prescription:</label>
+                                <div class="">
+                                    <textarea class="form-control" rows="7" id="prescription">{{patientData?.Prescription}}</textarea>
+                                </div>
+                                </div>     
+                            </div> 
+                            
+                            <div class="row col-sm-4">
+                                <div  class="form-group col-sm-12">
+                                        <label class="control-label" for="report">Report:</label>
+                                        <div class="">
+                                            <textarea class="form-control" rows="7" id="report" >{{patientData?.ReportResult}}</textarea>
+                                        </div>
+                                        </div>     
+                                    </div> 
+
+                            <div class="row col-sm-12">
+                                <div  class="form-group col-sm-12">
+                                        <div  class="form-group col-sm-3 next-visit-title">
+                                           <label class="control-label" for="nextVisit">Next Visit:</label>
+                                        </div> 
+                                        <div  class="form-group col-sm-3  next-visit-time">
+                                            <input type="text" class="form-control" id="nextVisit"  name="nextVisit" >
+                                        </div>
+                                        <div class="form-group col-sm-12 doctor-done-btn">
+                                             <button type="submit" class="btn btn-primary done-patient-btn" >DONE</button>
+                                        </div> 
+                                </div>     
+                            </div> 
+ 
+         </div>
+      </div>
+    </div>

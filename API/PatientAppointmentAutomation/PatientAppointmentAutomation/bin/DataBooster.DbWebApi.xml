@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataBooster.DbWebApi</name>
+    </assembly>
+    <members>
+        <member name="M:DataBooster.DbWebApi.WebApiExtensions.ExecuteDbApi(System.Web.Http.ApiController,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            <para>ExecuteDbApi is the DbWebApi extension method to ApiController.</para>
+            </summary>
+            <param name="apiController">Your ApiController to invoke this extension method</param>
+            <param name="sp">Specifies the fully qualified name of database stored procedure or function</param>
+            <param name="parameters">Specifies required parameters as name-value pairs</param>
+            <returns>A complete HttpResponseMessage contains result data returned by the database</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.WebApiExtensions.BulkExecuteDbApi``1(System.Web.Http.ApiController,System.String,System.Collections.Generic.IList{``0})">
+            <summary>
+            Bulk execute a DbApi with a IList&lt;IDictionary&lt;string, object&gt;&gt; (a collection of input parameters collection)
+            </summary>
+            <typeparam name="T">IDictionary&lt;string, object&gt;</typeparam>
+            <param name="apiController">Your ApiController to invoke this extension method</param>
+            <param name="sp">Specifies the fully qualified name of database stored procedure or function</param>
+            <param name="bulkParameterSets">Specifies a collection of required parameter dictionary for every call in the bulk execution</param>
+            <returns>A complete HttpResponseMessage contains an array of every result data returned by the database</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.WebApiExtensions.DynExecuteDbApi(System.Web.Http.ApiController,System.String,DataBooster.DbWebApi.InputParameters)">
+            <summary>
+            <para>The main DbWebApi extension method to ApiController.</para>
+            <para>This method combines ExecuteDbApi and BulkExecuteDbApi together,</para>
+            <para>Its actual behavior determined by the InputParameters(from request body) dynamically.</para>
+            <para>See example at https://github.com/DataBooster/DbWebApi/blob/master/Server/Sample/MyDbWebApi/Controllers/DbWebApiController.cs </para>
+            </summary>
+            <param name="apiController">Your ApiController to invoke this extension method</param>
+            <param name="sp">Specifies the fully qualified name of database stored procedure or function</param>
+            <param name="dynParameters">The InputParameters auto-binding from the request body</param>
+            <returns>A complete HttpResponseMessage contains result data returned by the database</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.WebApiExtensions.GatherInputParameters(System.Net.Http.HttpRequestMessage,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            <para>Gather required parameters of database stored procedure/function from body and from uri query string.</para>
+            <para>1. From body is the first priority, the input parameters will be gathered from body if the request has a message body;</para>
+            <para>2. Suppose all required input parameters were encapsulated as a JSON string into a special query string named "JsonInput";</para>
+            <para>3. Any query string which name matched with stored procedure input parameter' name will be forwarded to database.</para>
+            </summary>
+            <param name="request">The HTTP request. This is an extension method to HttpRequestMessage, when you use instance method syntax to call this method, omit this parameter.</param>
+            <param name="parametersFromBody">The parameters read from body.</param>
+            <returns>Final input parameters dictionary (name-value pairs) to pass to database call.</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.WebApiExtensions.GatherInputParameters(System.Net.Http.HttpRequestMessage,System.Collections.Generic.IDictionary{System.String,System.Object},System.String)">
+            <summary>
+            <para>Gather required parameters of database stored procedure/function from body and from uri query string.</para>
+            <para>1. From body is the first priority, the input parameters will be gathered from body if the request has a message body;</para>
+            <para>2. Suppose all required input parameters were encapsulated as a JSON string into a special query string named "JsonInput";</para>
+            <para>3. Any query string which name matched with stored procedure input parameter' name will be forwarded to database.</para>
+            </summary>
+            <param name="request">The HTTP request. This is an extension method to HttpRequestMessage, when you use instance method syntax to call this method, omit this parameter.</param>
+            <param name="parametersFromBody">The parameters read from body.</param>
+            <param name="jsonInput">The special pre-arranged name in query string. Default as JsonInput.</param>
+            <returns>Final input parameters dictionary (name-value pairs) to pass to database call.</returns>
+        </member>
+        <member name="P:DataBooster.DbWebApi.WebApiExtensions.QueryStringCacheLifetime">
+            <summary>
+            Get/Set the duration time that query string dictionary remains in the cache, defaults to 3 minutes.
+            </summary>
+        </member>
+        <member name="M:DataBooster.DbWebApi.Csv.CsvDateTimeConverter.ConvertToString(CsvHelper.TypeConversion.TypeConverterOptions,System.Object)">
+            <param name="options">The options to use when converting.</param>
+            <param name="value">The object to convert to a string.</param>
+            <returns>The string representation of the object.</returns>
+        </member>
+        <member name="P:DataBooster.DbWebApi.Csv.CsvDateTimeConverter.Format_Date">
+            <summary>
+            The format string for a date value with an accuracy of 1 day (DateTime.TimeOfDay.Ticks == 0). The default is "yyyy-MM-dd".
+            </summary>
+        </member>
+        <member name="P:DataBooster.DbWebApi.Csv.CsvDateTimeConverter.Format_DateTimeSecond">
+            <summary>
+            The format string for a DateTime value with an accuracy of 1 second (DateTime.Millisecond == 0). The default is "yyyy-MM-dd HH:mm:ss".
+            </summary>
+        </member>
+        <member name="P:DataBooster.DbWebApi.Csv.CsvDateTimeConverter.Format_DateTimeFractionalSecond">
+            <summary>
+            The format string for a DateTime value with an accuracy of 1 millisecond (DateTime.Millisecond != 0). The default is "yyyy-MM-dd HH:mm:ss.fff".
+            </summary>
+        </member>
+        <member name="T:DataBooster.DbWebApi.DeunderscorePropertyNamesContractResolver">
+            <summary>
+            Resolves member mappings for a type, De-underscore property names.
+            </summary>
+        </member>
+        <member name="M:DataBooster.DbWebApi.DeunderscorePropertyNamesContractResolver.ResolvePropertyName(System.String)">
+            <param name="propertyName">Name of the property.</param>
+            <returns>Name of the property.</returns>
+        </member>
+        <member name="T:DataBooster.DbWebApi.Form.MultipartFormDataMediaTypeFormatter">
+            <summary>
+            <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter"/> class for handling HTML Form Data - File Upload and Multipart MIME, also known as <c>multipart/form-data</c>. 
+            </summary>
+        </member>
+        <member name="M:DataBooster.DbWebApi.Form.MultipartFormDataMediaTypeFormatter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DataBooster.DbWebApi.Form.MultipartFormDataMediaTypeFormatter"/> class.
+            </summary>
+        </member>
+        <member name="M:DataBooster.DbWebApi.Form.MultipartFormDataMediaTypeFormatter.ReadFromStreamAsync(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger)">
+            <param name="type">The type of the object to deserialize.</param>
+            <param name="readStream">The <see cref="T:System.IO.Stream"/> to read.</param>
+            <param name="content">The <see cref="T:System.Net.Http.HttpContent"/>, if available. It may be null.</param>
+            <param name="formatterLogger">The <see cref="T:System.Net.Http.Formatting.IFormatterLogger"/> to log events to.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> whose result will be an object of the given type.</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.Form.MultipartFormDataMemoryStreamProvider.GetStream(System.Net.Http.HttpContent,System.Net.Http.Headers.HttpContentHeaders)">
+            <param name="parent">The HTTP content that contains this body part.</param>
+            <param name="headers">Header fields describing the body part.</param>
+            <returns>The <see cref="T:System.IO.Stream"/> instance where the message body part is written.</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.Form.MultipartFormDataMemoryStreamProvider.GetLocalFileName(System.Net.Http.Headers.HttpContentHeaders)">
+            <param name="headers">The headers for the current MIME body part.</param>
+            <returns>A relative filename with no path component.</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.InputParameters.SupplementFromQueryString(DataBooster.DbWebApi.InputParameters,System.Net.Http.HttpRequestMessage)">
+            <summary>
+            <para>Gather required parameters of database stored procedure/function from body and from uri query string.</para>
+            <para>1. From body is the first priority, the input parameters will only be gathered from body if the request has a message body;</para>
+            <para>2. Suppose all required input parameters were encapsulated as a JSON string into a special query string named "JsonInput";</para>
+            <para>3. Any query string which name matched with stored procedure input parameter' name will be forwarded to database.</para>
+            <para>See example at https://github.com/DataBooster/DbWebApi/blob/master/Server/Sample/MyDbWebApi/Controllers/DbWebApiController.cs </para>
+            </summary>
+            <param name="parametersFromBody">Auto-binded InputParameters from the request body.</param>
+            <param name="request">The HTTP request.</param>
+        </member>
+        <member name="T:DataBooster.DbWebApi.ParameterConvert">
+            <summary>
+            For supporting Table-Valued Parameter (SQL Server 2008+) and Oracle Associative Array Parameter
+            </summary>
+        </member>
+        <member name="M:DataBooster.DbWebApi.ParameterConvert.AsParameterValue(Newtonsoft.Json.Linq.JArray)">
+            <summary>
+            Convert a JArray value to an acceptable parameter type for SQL Server Table-Valued Parameter or Oracle Associative Array Parameter
+            </summary>
+            <param name="jArrayValue">A raw JSON value</param>
+            <returns>A DataTable if the first child element is JObject; Or an object[] if the first child element is JValue; Otherwise the jArrayValue itself.</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.ParameterConvert.AsParameterValue(System.Object)">
+            <summary>
+            Check an input object is an acceptable parameter value type, convert if necessary.
+            </summary>
+            <param name="rawValue">A raw value object</param>
+            <returns>An acceptable type parameter value</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.ParameterConvert.PretreatInputDictionary(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Pretreat input parameters dictionary, check each input object is an acceptable parameter value type, convert if necessary.
+            </summary>
+            <param name="rawParameters">A input parameters dictionary</param>
+            <returns>A new dictionary that contains all pretreated input parameters</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.Jsonp.JsonpMediaTypeFormatter.GetPerRequestFormatterInstance(System.Type,System.Net.Http.HttpRequestMessage,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <param name="type">The type to format.</param>
+            <param name="request">The request.</param>
+            <param name="mediaType">The media type.</param>
+            <returns>Returns <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter"/>.</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.Jsonp.JsonpMediaTypeFormatter.WriteToStreamAsync(System.Type,System.Object,System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext)">
+            <param name="type">The type of object to write.</param>
+            <param name="value">The object to write.</param>
+            <param name="writeStream">The <see cref="T:System.IO.Stream"/> to which to write.</param>
+            <param name="content">The <see cref="T:System.Net.Http.HttpContent"/> where the content is being written.</param>
+            <param name="transportContext">The <see cref="T:System.Net.TransportContext"/>.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> that will write the value to the stream.</returns>
+        </member>
+        <member name="M:DataBooster.DbWebApi.Razor.RazorMediaTypeFormatter.WriteToStream(System.Type,System.Object,System.IO.Stream,System.Net.Http.HttpContent)">
+            <param name="type">The type of the object to serialize.</param>
+            <param name="value">The object value to write. Can be null.</param>
+            <param name="writeStream">The stream to which to write.</param>
+            <param name="content">The <see cref="T:System.Net.Http.HttpContent"/>, if available. Can be null.</param>
+        </member>
+        <member name="T:DataBooster.DbWebApi.Razor.SerializableResponseData">
+            <summary>
+            The model needs to be serializable since Isolated RazorEngine will run the generated code within another AppDomain.
+            </summary>
+        </member>
+        <member name="T:DataBooster.DbWebApi.Form.WebFormUrlEncodedMediaTypeFormatter">
+            <summary>
+            Replacement of JQueryMvcFormUrlEncodedFormatter to support
+            InputParameters for handling application/x-www-form-urlencoded
+            </summary>
+        </member>
+        <member name="M:DataBooster.DbWebApi.Form.WebFormUrlEncodedMediaTypeFormatter.ReadFromStreamAsync(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger)">
+            <param name="type">The type of object to read.</param>
+            <param name="readStream">The <see cref="T:System.IO.Stream"/> from which to read.</param>
+            <param name="content">The content being read.</param>
+            <param name="formatterLogger">The <see cref="T:System.Net.Http.Formatting.IFormatterLogger"/> to log events to.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> whose result will be the object instance that has been read.</returns>
+        </member>
+    </members>
+</doc>

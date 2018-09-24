@@ -1,0 +1,50 @@
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Admin Panel</div>
+        <div class="panel-body">
+            <form class="form-horizontal" [formGroup]="adminForm" (ngSubmit)="saveFN(adminForm.value)">
+                <div  class="form-group">
+                        <label class="control-label col-sm-3" for="doctorMobile">Doctor's Mobile:</label>
+                        <div class="col-sm-3">
+                          <input type="text" class="form-control" id="doctorMobile"
+                           placeholder="Enter doctor's mobile"
+                           value="{{drAdminInfo?.DrNumber}}"
+                           name="doctorMobile" [formControl]="adminForm.controls['doctorMobile']">
+                        </div>
+                      </div>
+                      <div  class="form-group">
+                          <label class="control-label col-sm-3" for="newPatientPayment">New Patient Payment:</label>
+                          <div class="col-sm-3">
+                            <input type="text" class="form-control" id="newPatientPayment" 
+                            placeholder="Enter new patient payment"
+                            value="{{drAdminInfo?.NewPatientFee}}"
+                             name="newPatientPayment" [formControl]="adminForm.controls['newPatientPayment']">
+                          </div>
+                        </div>
+                        <div  class="form-group">
+                            <label class="control-label col-sm-3" for="oldPatientPayment">Old Patient Payment:</label>
+                            <div class="col-sm-3">
+                              <input type="text" class="form-control" id="oldPatientPayment"
+                               placeholder="Enter old patient payment"
+                               value="{{drAdminInfo?.OldPatientFee}}"
+                               name="oldPatientPayment" [formControl]="adminForm.controls['oldPatientPayment']">
+                            </div>
+                          </div>
+                          <div  class="form-group">
+                              <label class="control-label col-sm-3" for="reportPayment">Report Payment:</label>
+                              <div class="col-sm-3">
+                                <input type="text" class="form-control" id="reportPayment"
+                                 placeholder="Enter report payment"
+                                 value="{{drAdminInfo?.ReportFee}}"
+                                 name="reportPayment" [formControl]="adminForm.controls['reportPayment']">
+                              </div>
+                            </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary save-patient-btn"  [disabled]="!adminForm.valid">SAVE</button>
+                </div>
+            </form>
+
+        </div>
+      </div>
+
+

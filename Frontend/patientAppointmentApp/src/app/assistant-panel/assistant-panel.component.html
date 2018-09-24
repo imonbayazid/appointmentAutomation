@@ -1,0 +1,291 @@
+<div class="container col-sm-12">
+        <div class="row">
+            <div class="panel panel-primary custom-panel">
+              <div class="panel-heading custom-panel-heading">
+                  <span class="separation-right-margin">Patient   </span>
+                  <span class="separation-right-margin">Total:{{service?.totalPatient}}</span>
+                  <span class="separation-right-margin">Complete:{{service?.completedPatient}}</span>
+                  <span class="separation-right-margin"> Running serial:{{service?.runningPatientSerial}}</span>
+                </div>
+              <table class="table table-fixed text-center">
+                <thead>
+                        <tr class="row custom-heading-row-style">
+                                <th class="col-sm-1 text-center">Serial</th>
+                                <th class="col-sm-2 text-center">Name</th>
+                                <th class="col-sm-2 text-center">ID</th>
+                                <th class="col-sm-2 text-center">Mobile</th>
+                                <th class="col-sm-1 text-center">Present?</th>
+                                <th class="col-sm-1 text-center">Send</th>
+                                <th class="col-sm-1 text-center">Call</th>
+                                <th class="col-sm-1 text-center">Done?</th>
+                                <th class="col-sm-1 text-center">Prescription(+)</th>
+                                <!--<th class="col-sm-1 text-center">Payment</th> --> 
+                            </tr>
+                </thead>
+                <tbody>
+                        <tr class="row" *ngFor="let patient of patientData; let i = index" (click)="patientTableRowClick(i,patient)" [ngClass]="{'disabled-row': patient.isDone==true}" [class.active]="i == selectedRow">
+                                <td class="col-sm-1">{{ patient.PatientSerial }}</td>
+                                <td class="col-sm-2">{{ patient.PatientName }}</td>
+                                <td class="col-sm-2">{{ patient.PatientID }}</td>
+                                <td class="col-sm-2">{{ patient.PatientNumber }}</td>
+                                <td class="col-sm-1 is-present">
+                                    <label class="switch"  [ngClass]="{'disabled-column': patient.IsAppointmentDone==true}"  >
+                                        <input type="checkbox" [(ngModel)]="patient.IsPatientPresent" (change)="isPresentChange(patient,patient.IsPatientPresent,'patient')">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                                <td class="col-sm-1 send-patient">
+                                    <button (click)="sendPatientToDoctor(patient,'patient')" [ngClass]="{'disabled-column': patient.IsAppointmentDone==true}"   type="button" class="btn btn-warning send-btn">
+                                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                                         Send
+                                     </button></td>
+                                <td class="col-sm-1 call-patient">
+                                    <button type="button" class="btn call-btn-wrap" [ngClass]="{'disabled-column': patient.IsAppointmentDone==true}" > 
+                                        <i (click)="callPatient(patient,'patient')" class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                                <td class="col-sm-1 is-done">
+                                  <input [ngClass]="{'disabled-column': patient.IsAppointmentDone==true}"  class="is-done-checkbox" type="checkbox" [(ngModel)]="patient.IsAppointmentDone" (change)="isPatientDoneChange(patient,patient.NewPatientFee,patient.IsAppointmentDone,'patient')">
+                                </td>
+                                <td class="col-sm-1 add-prescription">
+                                    <button [ngClass]="{'disabled-column': patient.IsAppointmentDone==true}"  type="button" class="btn add-prescription-btn" (click)="addPrescription(patient,addPrescriptionModal)">
+                                      <i class="fa fa-sticky-note fa-2x add-prescription-btn-awesome-font" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                                <td  class="col-sm-1 payment-amount"><input [ngClass]="{'disabled-column': patient.IsAppointmentDone==true}"  type="text" value="{{patient.NewPatientFee}}" class="form-control" id="payment"></td>
+                        </tr>
+                        
+                </tbody>
+              </table>
+            </div>
+        </div>  
+      </div>
+
+
+      <div class="container col-sm-12">
+            <div class="row">
+                <div class="panel panel-primary custom-panel">
+                  <div class="panel-heading custom-panel-heading">
+                      <span class="separation-right-margin">Report   </span>
+                      <span class="separation-right-margin">Total:{{service?.totalReport}}</span>
+                      <span class="separation-right-margin">Complete:{{service?.completedReport}}</span>
+                      <span>Running serial:{{service?.runningReportSerial}}</span>
+                  </div>
+                  <table class="table table-fixed text-center">
+                    <thead>
+                            <tr class="row custom-heading-row-style">
+                                    <th class="col-sm-1 text-center">Serial</th>
+                                    <th class="col-sm-2 text-center">Name</th>
+                                    <th class="col-sm-2 text-center">ID</th>
+                                    <th class="col-sm-2 text-center">Mobile</th>
+                                    <th class="col-sm-1 text-center">Present?</th>
+                                    <th class="col-sm-1 text-center">Send</th>
+                                    <th class="col-sm-1 text-center">Call</th>
+                                    <th class="col-sm-1 text-center">Done?</th>
+                                    <th class="col-sm-1 text-center">Prescription(+)</th>
+                                    <!-- <th class="col-sm-1 text-center">Payment</th> -->                                    
+                                </tr>
+                    </thead>
+                    <tbody>
+                            <tr class="row" *ngFor="let report of reportData; let i = index" (click)="reportTableRowClick(i,report)" [ngClass]="{'disabled-row': report.IsAppointmentDone==true}" [class.active]="i == selectedReportTableRow">
+                                    <td class="col-sm-1">{{ report.PatientSerial }}</td>
+                                    <td class="col-sm-2">{{ report.PatientName }}</td>
+                                    <td class="col-sm-2">{{ report.PatientID }}</td>
+                                    <td class="col-sm-2">{{ report.PatientNumber }}</td>
+                                    <td class="col-sm-1 is-present">
+                                        <label class="switch"  [ngClass]="{'disabled-column': report.IsAppointmentDone==true}"  >
+                                            <input type="checkbox" [(ngModel)]="report.IsPatientPresent" (change)="isPresentChange(report,report.IsPatientPresent,'report')">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td>
+                                    <td class="col-sm-1 send-patient">
+                                        <button (click)="sendPatientToDoctor(report,'report')" [ngClass]="{'disabled-column': report.IsAppointmentDone==true}"   type="button" class="btn btn-warning send-btn">
+                                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                                             Send
+                                         </button></td>
+                                    <td class="col-sm-1 call-patient">
+                                        <button type="button" class="btn call-btn-wrap" [ngClass]="{'disabled-column': report.IsAppointmentDone==true}" > 
+                                            <i (click)="callPatient(report,'report')" class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    <td class="col-sm-1 is-done">
+                                      <input [ngClass]="{'disabled-column': report.IsAppointmentDone==true}"  class="is-done-checkbox" type="checkbox" [(ngModel)]="report.IsAppointmentDone" (change)="isPatientDoneChange(report,report.ReportFee,report.IsAppointmentDone,'report')">
+                                    </td>
+                                    <td class="col-sm-1 add-prescription">
+                                        <button [ngClass]="{'disabled-column': report.IsAppointmentDone==true}"  type="button" class="btn add-prescription-btn" (click)="addPrescription(report,addPrescriptionModal)">
+                                          <i class="fa fa-sticky-note fa-2x add-prescription-btn-awesome-font" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    <td  class="col-sm-1 payment-amount"><input [ngClass]="{'disabled-column': report.IsAppointmentDone==true}"  type="text" value="{{report.ReportFee}}" class="form-control" id="payment"></td>
+                            </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            <button (click)="openAddPatientModal(addPatientModalRef)" type="button" class="btn btn-primary">Add Patient (+)</button>
+         <button (click)="completeAllAppoinment()" type="button" class="btn btn-success"><i ></i>Complete All</button>
+         
+          </div>
+
+
+
+<!-- ADD a prescription modal -->
+<div bsModal #addPrescriptionModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title pull-left">Add a prescription - ID: patientid</h4>
+              <button type="button" class="close pull-right" (click)="addPrescriptionModal.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                    <form class="form-horizontal" [formGroup]="addPrescriptionForm" (ngSubmit)="addPrescriptionFN(addPrescriptionForm.value,addPrescriptionModal)">
+                        <div class="row col-sm-12">
+                            <p class="patient-basic-info">Name: patient name  Patient Number: 01582584552  Patient Type: New Patient   Last appoinment Date: 01/02/2018</p>
+                        </div>    
+                        <div class="row col-sm-12">
+                               <div  class="form-group col-sm-2">
+                                       <label class="control-label" for="location">Location:</label>
+                                       <div class="">
+                                         <input type="text" class="form-control" id="location" placeholder="location" name="location" [formControl]="addPrescriptionForm.controls['location']">
+                                       </div>
+                                     </div>
+       
+                                     <div  class="form-group col-sm-2 add-prescription-margin2">
+                                           <label class="control-label" for="age">Age:</label>
+                                           <div class="">
+                                             <input type="text" class="form-control" id="age" placeholder="age" name="age" [formControl]="addPrescriptionForm.controls['age']">
+                                           </div>
+                                         </div>
+       
+                                         <div  class="form-group col-sm-2 add-prescription-margin2">
+                                               <label class="control-label" for="weight">Weight:</label>
+                                               <div class="">
+                                                 <input type="text" class="form-control" id="weight" placeholder="weight" name="weight" [formControl]="addPrescriptionForm.controls['weight']">
+                                               </div>
+                                             </div>
+       
+                                             <div  class="form-group col-sm-2 add-prescription-margin2">
+                                                   <label class="control-label" for="height">Height:</label>
+                                                   <div class="">
+                                                     <input type="text" class="form-control" id="height" placeholder="height" name="height" [formControl]="addPrescriptionForm.controls['height']">
+                                                   </div>
+                                                 </div>
+                                             
+                                               <div  class="form-group col-sm-2 add-prescription-margin2">
+                                                   <label class="control-label" for="pressure">Pressure:</label>
+                                                   <div class="">
+                                                     <input type="text" class="form-control" id="pressure" placeholder="pressure" name="pressure" [formControl]="addPrescriptionForm.controls['pressure']">
+                                                   </div>
+                                                 </div>
+                                               </div>
+
+
+                                        <div class="row col-sm-4">
+                                            <div  class="form-group col-sm-12">
+                                                    <label class="control-label" for="history">History:</label>
+                                                    <div class="">
+                                                        <textarea class="form-control" rows="7" id="history" [formControl]="addPrescriptionForm.controls['history']"></textarea>
+                                                    </div>
+                                                    </div>     
+                                               </div> 
+                                        <div class="row col-sm-4">
+                                            <div  class="form-group col-sm-12">
+                                                    <label class="control-label" for="prescription">Prescription:</label>
+                                                    <div class="">
+                                                        <textarea class="form-control" rows="7" id="prescription" [formControl]="addPrescriptionForm.controls['prescription']"></textarea>
+                                                    </div>
+                                                    </div>     
+                                                </div> 
+                                                
+                                                <div class="row col-sm-4">
+                                                    <div  class="form-group col-sm-12">
+                                                            <label class="control-label" for="report">Report:</label>
+                                                            <div class="">
+                                                                <textarea class="form-control" rows="7" id="report" [formControl]="addPrescriptionForm.controls['report']"></textarea>
+                                                            </div>
+                                                            </div>     
+                                                        </div> 
+
+                                                        <div  class="form-group col-sm-2">
+                                                                <label class="control-label" for="nextVisit">Next Visit:</label>
+                                                                <div class="">
+                                                                  <input type="text" class="form-control" id="nextVisit" placeholder="nextVisit" name="nextVisit" [formControl]="addPrescriptionForm.controls['nextVisit']">
+                                                                </div>
+                                                              </div>
+
+       
+                              <div class="form-group">
+                                   <button type="submit" class="btn btn-primary save-patient-btn"  [disabled]="!addPatientForm.valid">SAVE</button>
+                               </div>
+                    
+                            </form>
+                 
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+      <!-- ADD a patient modal -->
+<ng-template #addPatientModalRef>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Add a patient - (new/old/report)</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                <form class="form-horizontal" [formGroup]="addPatientForm" (ngSubmit)="addPaitentFN(addPatientForm.value)">
+
+                        <div class="form-group" [ngClass]="{'has-error':!addPatientForm.controls['patientType'].valid && addPatientForm.controls['patientType'].touched}">
+                            <label class="control-label col-sm-3"   for="patientType">Select Patient Type:</label>
+                            <div class="col-sm-8">
+                            <select (change)="patientTypeChangeEvent($event.target.value)" class="user form-control" id="" [formControl]="addPatientForm.controls['patientType']">
+                                <option *ngFor="let patientType of patientTypeDropdownDATA" [ngValue]="patientType">{{patientType}}</option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <div *ngIf="addPatientForm.value.patientType=='Report' || addPatientForm.value.patientType=='Old Patient'" class="form-group">
+                                <label class="control-label col-sm-3" for="patientID">Patient ID:</label>
+                                <div class="col-sm-8">
+                                  <input type="text" class="form-control" id="patientID" placeholder="Enter patient ID" name="patientID" [formControl]="addPatientForm.controls['patientID']">
+                                </div>
+                              </div>
+
+                        <div *ngIf="addPatientForm.value.patientType=='New Patient'" class="form-group">
+                            <label class="control-label col-sm-3" for="patientName">Patient Name:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="patientName" placeholder="Enter patient Name" name="patientName" [formControl]="addPatientForm.controls['patientName']">
+                            </div>
+                            </div>
+
+                        <div *ngIf="addPatientForm.value.patientType=='New Patient'" class="form-group">
+                                <label class="control-label col-sm-3" for="patientMobile">Patient Mobile:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="patientMobile" placeholder="Enter patient Mobile Mumber" name="patientMobile" [formControl]="addPatientForm.controls['patientMobile']">
+                                </div>
+                                </div>
+          
+          
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary save-patient-btn"  [disabled]="!addPatientForm.valid">SAVE</button>
+                        </div>
+                </form>
+          
+        </div>
+      </ng-template>
+
+
+
+
+

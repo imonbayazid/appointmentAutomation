@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DbParallel.DataAccess</name>
+    </assembly>
+    <members>
+        <member name="P:DbParallel.DataAccess.DbAccess.DynamicObjectXmlSettings">
+            <summary>
+            Gets the BindableDynamicObject.XmlSettings object used to control the behavior of XML serialization.
+            </summary>
+        </member>
+        <member name="M:DbParallel.DataAccess.DbExtensions.SetValue(System.Data.Common.DbParameter,System.IConvertible)">
+            <summary>
+            Set Value of Simple Parameter
+            </summary>
+            <param name="dbParameter"></param>
+            <param name="simpleValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.DbExtensions.SetValue``1(System.Data.Common.DbParameter,``0[])">
+            <summary>
+            Set Value of Associative Array Parameter (Oracle)
+            </summary>
+            <param name="dbParameter"></param>
+            <param name="associativeArray"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.DbExtensions.SetValue(System.Data.Common.DbParameter,System.Data.DataTable)">
+            <summary>
+            Set Value of Table-Valued Parameter (SQL Server 2008+)
+            </summary>
+            <param name="dbParameter"></param>
+            <param name="tableValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.DbExtensions.SetValue(System.Data.Common.DbParameter,System.Data.Common.DbDataReader)">
+            <summary>
+            Set Value of Table-Valued Parameter (SQL Server 2008+)
+            </summary>
+            <param name="dbParameter"></param>
+            <param name="readerValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.DbExtensions.SetValue``1(System.Data.Common.DbParameter,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Set Value of Table-Valued Parameter (SQL Server 2008+) or Associative Array Parameter (Oracle)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dbParameter"></param>
+            <param name="enumerableData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.DbParameterBuilder.AddTableValue(System.String,System.String)">
+            <summary>
+            Add a Table-Valued Parameter (SQL Server 2008+)
+            </summary>
+            <param name="parameterName">The name of the parameter</param>
+            <param name="typeName">(Optional): The name of a compatible type created on the server</param>
+            <returns>A SqlParameter object</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.DbParameterBuilder.AddTableValue(System.String,System.Data.DataTable)">
+            <summary>
+            Add a Table-Valued Parameter (SQL Server 2008+) with a DataTable value
+            </summary>
+            <param name="parameterName">The name of the parameter</param>
+            <param name="dataTable">An object derived from DataTable to stream rows of data to the table-valued parameter</param>
+            <returns>A SqlParameter object</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.DbParameterBuilder.AddTableValue(System.String,System.Data.Common.DbDataReader)">
+            <summary>
+            Add a Table-Valued Parameter (SQL Server 2008+) with a DbDataReader value
+            </summary>
+            <param name="parameterName">The name of the parameter</param>
+            <param name="dataReader">An object derived from DbDataReader to stream rows of data to the table-valued parameter</param>
+            <returns>A SqlParameter object</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.DbParameterBuilder.AddTableValue``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Add a Table-Valued Parameter (SQL Server 2008+) with a collection value
+            </summary>
+            <param name="parameterName">The name of the parameter</param>
+            <param name="records">An object derived from IEnumerable&lt;SqlDataRecord&gt;, IEnumerable&lt;IDictionary&lt;string, object&gt;&gt; or IEnumerable&lt;object&gt; (a collection of anonymous or named type instances) </param>
+            <returns>A SqlParameter object</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.PropertyNames">
+            <summary>
+            Gets all property names of this dynamic object.
+            </summary>
+            <returns>An IEnumerable&lt;string&gt; of this dynamic object's property names.</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.PropertyValues">
+            <summary>
+            Gets an IEnumerable&lt;object&gt; of this dynamic object's property values.
+            </summary>
+            <returns>An IEnumerable&lt;object&gt; of this dynamic object's property values.</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.Property(System.String,System.Boolean)">
+            <summary>
+            Gets the value with the specified propertyName. 
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <param name="ignoreCase">True if the propertyName should be matched ignoring case; false otherwise. The default is true.</param>
+            <returns>The raw value with the specified propertyName, or null if the specified propertyName is not found.</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.Property``1(System.String,System.Boolean)">
+            <summary>
+            Gets the value of the specified propertyName, converted to the specified type.
+            </summary>
+            <typeparam name="T">The type to convert the value to.</typeparam>
+            <param name="propertyName">The property name.</param>
+            <param name="ignoreCase">True if the propertyName should be matched ignoring case; false otherwise. The default is true.</param>
+            <returns>The type-converted value of the specified propertyName, or default(T) if the specified propertyName is not found.</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.ToObject``1(System.Boolean)">
+            <summary>
+            Creates the specified type from this dynamic object, transfers all matched properties by names.
+            </summary>
+            <typeparam name="T">The target object type.</typeparam>
+            <param name="ignoreCase">True if the propertyNames should be matched ignoring case; false otherwise. The default is true.</param>
+            <returns>The new object created from this dynamic object.</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.ToObject``1(``0,System.Boolean)">
+            <summary>
+            Transfers all matched properties (by names) to a pre-created object.
+            </summary>
+            <typeparam name="T">The target object type.</typeparam>
+            <param name="createdInstance">The pre-created object to be filled.</param>
+            <param name="ignoreCase">True if the propertyNames should be matched ignoring case; false otherwise. The default is true.</param>
+            <returns>The createdInstance.</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.GetDynamicMemberNames">
+            <returns>A sequence that contains dynamic member names.</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+            <param name="binder">Provides information about the object that called the dynamic operation. The binder.Name property provides the name of the member on which the dynamic operation is performed. For example, for the Console.WriteLine(sampleObject.SampleProperty) statement, where sampleObject is an instance of the class derived from the <see cref="T:System.Dynamic.DynamicObject"/> class, binder.Name returns "SampleProperty". The binder.IgnoreCase property specifies whether the member name is case-sensitive.</param>
+            <param name="result">The result of the get operation. For example, if the method is called for a property, you can assign the property value to <paramref name="result"/>.</param>
+            <returns>true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a run-time exception is thrown.)</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)">
+            <param name="binder">Provides information about the object that called the dynamic operation. The binder.Name property provides the name of the member to which the value is being assigned. For example, for the statement sampleObject.SampleProperty = "Test", where sampleObject is an instance of the class derived from the <see cref="T:System.Dynamic.DynamicObject"/> class, binder.Name returns "SampleProperty". The binder.IgnoreCase property specifies whether the member name is case-sensitive.</param>
+            <param name="value">The value to set to the member. For example, for sampleObject.SampleProperty = "Test", where sampleObject is an instance of the class derived from the <see cref="T:System.Dynamic.DynamicObject"/> class, the <paramref name="value"/> is "Test".</param>
+            <returns>true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.)</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.TryGetValue(System.String,System.Object@)">
+            <summary>
+            Gets the value associated with the specified key (propertyName).
+            </summary>
+            <param name="propertyName">The specified key (propertyName) of the value to get - be matched ignoring case.</param>
+            <param name="value">When this method returns, contains the value associated with the specified key, if the key is found; otherwise, the default value for the type of the value parameter.This parameter is passed uninitialized.</param>
+            <returns>True if the member (propertyName) exists in the dynamic object, otherwise false.</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.TryGetValue(System.String,System.Object@,System.Boolean)">
+            <summary>
+            Gets the value associated with the specified key (propertyName).
+            </summary>
+            <param name="propertyName">The specified key (propertyName) of the value to get.</param>
+            <param name="value">When this method returns, contains the value associated with the specified key, if the key is found; otherwise, the default value for the type of the value parameter.This parameter is passed uninitialized.</param>
+            <param name="ignoreCase">True if the specified key (propertyName) should be matched ignoring case; false otherwise.</param>
+            <returns>True if the member (propertyName) exists in the dynamic object, otherwise false.</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.TryGetValue``1(System.String,``0@,System.Boolean)">
+            <summary>
+            Gets the value associated with the specified key (propertyName), converted to the specified type.
+            </summary>
+            <typeparam name="T">The type to convert the value to.</typeparam>
+            <param name="propertyName">The specified key (propertyName) of the value to get.</param>
+            <param name="value">When this method returns, contains the type-converted value associated with the specified key, if the key is found; otherwise, the default value for the type of the value parameter.This parameter is passed uninitialized.</param>
+            <param name="ignoreCase">True if the specified key (propertyName) should be matched ignoring case; false otherwise. The default is true.</param>
+            <returns>True if the member (propertyName) exists in the dynamic object, otherwise false.</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.ConvertNullToDBNull">
+            <summary>
+            Convert all null values to DBNull
+            </summary>
+        </member>
+        <member name="M:DbParallel.DataAccess.BindableDynamicObject.ConvertDBNullToNull">
+            <summary>
+            Convert all DBNull values to null
+            </summary>
+        </member>
+        <member name="T:DbParallel.DataAccess.BindableDynamicObject.XmlSettings">
+            <summary>
+            Specifies BindableDynamicObject XML serialization settings
+            </summary>
+        </member>
+        <member name="P:DbParallel.DataAccess.BindableDynamicObject.XmlSettings.SerializePropertyAsAttribute">
+            <summary>
+            <para>Gets or sets a boolean value indicating whether to serialize dynamic properties as XML attributes.</para>
+            <para>true to serialize dynamic properties as XML attributes; otherwise, false to serialize dynamic properties as XML elements.</para>
+            <para>The default is false.</para>
+            </summary>
+        </member>
+        <member name="P:DbParallel.DataAccess.BindableDynamicObject.XmlSettings.EmitNullValue">
+            <summary>
+            <para>Gets or sets a boolean value indicating whether to serialize the null or DbNull value for a property being serialized.</para>
+            <para>true if the null or DbNull value for a property should be generated in the serialization stream; otherwise, false.</para>
+            <para>The default is true.</para>
+            </summary>
+        </member>
+        <member name="P:DbParallel.DataAccess.BindableDynamicObject.XmlSettings.TypeSchema">
+            <summary>
+            <para>Gets or sets a value indicating whether to emit data type attributes in the XML, or which type system to use. This setting only apply to SerializePropertyAsAttribute = false (serialize dynamic properties as XML elements).</para>
+            <para>None: Do not emit data type information;</para>
+            <para>XSD: Emit XSD type information ("http://www.w3.org/2001/XMLSchema" namespace);</para>
+            <para>NET: Emit .NET type information ("http://schemas.microsoft.com/2003/10/Serialization/" namespace);</para>
+            <para>The default is None.</para>
+            </summary>
+        </member>
+        <member name="T:DbParallel.DataAccess.BindableDynamicObject.XmlSettings.DataTypeSchema">
+            <summary>
+            Indicates whether to emit data type attributes in the XML, or which type system to use.
+            </summary>
+        </member>
+        <member name="F:DbParallel.DataAccess.BindableDynamicObject.XmlSettings.DataTypeSchema.None">
+            <summary>
+            Not to emit data type information
+            </summary>
+        </member>
+        <member name="F:DbParallel.DataAccess.BindableDynamicObject.XmlSettings.DataTypeSchema.Xsd">
+            <summary>
+            Emit XSD type information ("http://www.w3.org/2001/XMLSchema" namespace)
+            </summary>
+        </member>
+        <member name="F:DbParallel.DataAccess.BindableDynamicObject.XmlSettings.DataTypeSchema.Net">
+            <summary>
+            Emit .NET type information ("http://schemas.microsoft.com/2003/10/Serialization/" namespace)
+            </summary>
+        </member>
+        <member name="M:DbParallel.DataAccess.StoredProcedureResponse.ConvertNullToDBNull">
+            <summary>
+            Convert all null values to DBNull
+            </summary>
+        </member>
+        <member name="M:DbParallel.DataAccess.StoredProcedureResponse.ConvertDBNullToNull">
+            <summary>
+            Convert all DBNull values to null
+            </summary>
+        </member>
+        <member name="T:DbParallel.DataAccess.ParameterConvert">
+            <summary>
+            For supporting Table-Valued Parameter (SQL Server 2008+) and Oracle Associative Array Parameter
+            </summary>
+        </member>
+        <member name="M:DbParallel.DataAccess.ParameterConvert.ToDataTable``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Creates a DataTable from an IEnumerable&lt;IDictionary&lt;string, object&gt;&gt; (collection of dynamic objects)
+            </summary>
+            <typeparam name="T">Dynamic object type (IDictionary&lt;string, object&gt;)</typeparam>
+            <param name="dynObjects">A collection of dynamic objects</param>
+            <returns>A DataTable that contains the data from the input dynamic objects' properties</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.ParameterConvert.ToDataTable(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            Creates a DataTable from an IEnumerable&lt;anonymousObjects&gt; (collection of anonymous or named type instances)
+            </summary>
+            <param name="anonymousObjects">A collection of anonymous or named type instances</param>
+            <returns>A DataTable that contains the data from the input objects' properties</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.ParameterConvert.AsParameterValue(System.IConvertible)">
+            <summary>
+            Check an input value is an acceptable simple parameter type, convert to DBNull if it's null.
+            </summary>
+            <param name="simpleValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.ParameterConvert.AsParameterValue``1(``0[])">
+            <summary>
+            Check an input value is an acceptable Oracle associative array parameter type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="associativeArray"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.ParameterConvert.AsParameterValue(System.Data.DataTable)">
+            <summary>
+            Check an input value is an acceptable Table-Valued Parameter (SQL Server 2008+)
+            </summary>
+            <param name="tableValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.ParameterConvert.AsParameterValue(System.Data.Common.DbDataReader)">
+            <summary>
+            Check an input value is an acceptable Table-Valued Parameter (SQL Server 2008+)
+            </summary>
+            <param name="readerValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.ParameterConvert.AsParameterValue``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check an input collection is an acceptable parameter type, convert if necessary.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="enumerableData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.ParameterConvert.AsOfType``1(System.Collections.IEnumerable)">
+            <summary>
+            Try cast an IEnumerable as the specified type; If not, filters the elements of an IEnumerable based on a specified type.
+            </summary>
+            <typeparam name="T">The type to cast/filter the elements of source to</typeparam>
+            <param name="source">The IEnumerable that contains the elements to be cast to type T</param>
+            <returns>An IEnumerable&lt;T&gt; that contains each element of the source sequence cast/filter to the specified type.</returns>
+        </member>
+        <member name="M:DbParallel.DataAccess.ParameterConvert.NormalizeNumericArray(System.Object[])">
+            <summary>
+            <para>Normalize an object[] (promiscuous element numeric types) to a most compatible primitive type</para>
+            <para>For example, object[] {0, 10000L, 3.14, 0.618m} ==> decimal[] {0m, 10000m, 3.14m, 0.618m}</para>
+            </summary>
+            <param name="rawArray">A promiscuous types' numeric array</param>
+            <returns>A normalized new array if all elements are numeric, or just the rawArray itself if contains any non-numeric element.</returns>
+        </member>
+    </members>
+</doc>

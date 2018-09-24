@@ -1,0 +1,201 @@
+/*Table css for scrollable*/
+.table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  height: 180px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+  border-bottom-width: 0;
+}
+
+
+
+
+
+/*custom CSS*/
+.patient-list-table-panel-body{
+    padding:0px!important;
+}
+
+tr.p-table-header {
+  background-color: lavender;
+}
+.width-10{
+    width: 10px;
+}
+
+
+.send-btn{
+  width: 65px;
+  height: 28px;
+  padding: 0px;
+  background-color: steelblue!important;
+  border: none;
+}
+.call-btn{
+  color: steelblue;
+}
+
+.call-btn-wrap{
+  width: 32px;
+  height: 28px;
+  padding: 0px;
+  background-color: #ffffff00;
+  color: steelblue;
+}
+
+.add-prescription-btn-awesome-font{
+  font-size: 20px!important;
+}
+.is-done-checkbox{
+  width: 38px;
+}
+
+
+.add-prescription-btn{
+  width: 32px;
+  height: 28px;
+  padding: 0px;
+  background-color:#ffffff00;
+  color: steelblue;
+}
+
+input#payment {
+  width: 60px;
+  height: 25px;
+}
+
+.save-patient-btn{
+    float: right;
+    margin-right: 64px;
+    width: 100px;
+    height: 41px;
+}
+
+.custom-panel-heading{
+  padding: 2px!important;
+  padding-left: 25px!important;
+}
+.custom-panel{
+  margin-bottom: 5px!important;
+}
+
+.separation-right-margin{
+  margin-right: 70px;
+}
+
+.modal-lg{
+  width: 1000px!important;
+}
+.add-prescription-margin2{
+  margin-left: -5px;
+}
+
+.custom-heading-row-style{
+  background-color: lavender;
+  margin-left: 0px;
+  margin-right: -40px;
+}
+.text-center{
+  text-align: center;
+}
+
+td.col-sm-1.is-present {
+  padding-bottom: 3px;
+}
+td.col-sm-1.send-patient {
+  padding-bottom: 0px;
+}
+td.col-sm-1.call-patient {
+  padding-bottom: 0px;
+}
+td.col-sm-1.is-done {
+  padding-bottom: 6px;
+}
+td.col-sm-1.add-prescription {
+  padding-bottom: 0px;
+}
+td.col-sm-1.payment-amount {
+  padding-bottom: 3px;
+  display: none;
+}
+
+/*Selected row*/
+.table tr.active td {
+  background-color:#123456 !important;
+  color: white;
+}
+
+.disabled-row{
+  background-color: darkgray;
+}
+.disabled-column{
+   cursor: not-allowed;
+   pointer-events: none;
+   color: gray;
+}
+
+
+/*switch CSS */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 35px;
+    height: 15px;
+  }
+  
+  .switch input {display:none;}
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 30px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }

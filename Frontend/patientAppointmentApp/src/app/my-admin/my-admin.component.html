@@ -1,0 +1,93 @@
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">My Admin Panel</div>
+      <div class="panel-body">
+          <form class="form-horizontal" [formGroup]="adminForm" (ngSubmit)="saveFN(adminForm.value)">
+              <div  class="form-group">
+                  <label class="control-label col-sm-3" for="doctorName">Doctor's Name:</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" id="doctorName" placeholder="Enter doctor's name"
+                     name="doctorName" [formControl]="adminForm.controls['doctorName']">
+                  </div>
+                </div>
+              <div  class="form-group">
+                      <label class="control-label col-sm-3" for="doctorMobile">Doctor's Mobile:</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="doctorMobile" placeholder="Enter doctor's mobile"
+                         name="doctorMobile" [formControl]="adminForm.controls['doctorMobile']">
+                      </div>
+                    </div>
+
+                    <div  class="form-group">
+                        <label class="control-label col-sm-3" for="doctorKey">Doctor's Key:</label>
+                        <div class="col-sm-3">
+                          <input type="text" class="form-control" id="doctorKey" placeholder="Enter doctor's key"
+                           name="doctorKey" [formControl]="adminForm.controls['doctorKey']">
+                        </div>
+                      </div>
+
+                      <div  class="form-group">
+                        <label class="control-label col-sm-3" for="doctorEmail">Doctor's Email:</label>
+                        <div class="col-sm-3">
+                          <input type="text" class="form-control" id="doctorEmail" placeholder="Enter doctor's email"
+                           name="doctorEmail" [formControl]="adminForm.controls['doctorEmail']">
+                        </div>
+                      </div>
+
+                      <div  class="form-group">
+                          <label class="control-label col-sm-3" for="doctorDepartment">Doctor's Department:</label>
+                          <div class="col-sm-3">
+                            <input type="text" class="form-control" id="doctorDepartment" placeholder="Enter doctor's department"
+                             name="doctorDepartment" [formControl]="adminForm.controls['doctorDepartment']">
+                          </div>
+                        </div>
+
+                        <div  class="form-group">
+                            <label class="control-label col-sm-3" for="doctorChamber">Doctor's Chamber:</label>
+                            <div class="col-sm-3">
+                              <input type="text" class="form-control" id="doctorChamber" placeholder="Enter doctor"
+                               name="doctorChamber" [formControl]="adminForm.controls['doctorChamber']">
+                            </div>
+                          </div>
+
+                          <div  class="form-group">
+                              <label class="control-label col-sm-3" for="doctorDivision">Doctor's Division:</label>
+                              <div class="col-sm-3">
+                                <input type="text" class="form-control" id="doctorDivision" placeholder="Enter doctor's division"
+                                 name="doctorDivision" [formControl]="adminForm.controls['doctorDivision']">
+                              </div>
+                            </div>
+
+                            <div  class="form-group">
+                                <label class="control-label col-sm-3" for="doctorDetails1">Doctor's Details1:</label>
+                                <div class="col-sm-3">
+                                  <input type="text" class="form-control" id="doctorDetails1" placeholder="Enter doctor's details1"
+                                   name="doctorDetails1" [formControl]="adminForm.controls['doctorDetails1']">
+                                </div>
+                              </div>
+
+                              <div  class="form-group">
+                                  <label class="control-label col-sm-3" for="doctorDetails2">Doctor's Details2:</label>
+                                  <div class="col-sm-3">
+                                    <input type="text" class="form-control" id="doctorDetails2" placeholder="Enter doctor's details2"
+                                     name="doctorDetails2" [formControl]="adminForm.controls['doctorDetails2']">
+                                  </div>
+                                </div>
+
+                                <div  class="form-group">
+                                    <label class="control-label col-sm-3" for="doctorDetails3">Doctor's Details3:</label>
+                                    <div class="col-sm-3">
+                                      <input type="text" class="form-control" id="doctorDetails3" placeholder="Enter doctor's details1"
+                                       name="doctorDetails3" [formControl]="adminForm.controls['doctorDetails3']">
+                                    </div>
+                                  </div>
+                   
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary save-patient-btn"  [disabled]="!adminForm.valid">SAVE</button>
+              </div>
+          </form>
+
+      </div>
+    </div>
+
+

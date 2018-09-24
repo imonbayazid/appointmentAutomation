@@ -1,0 +1,58 @@
+.patient-list-table-panel-body{
+    padding:0px!important;
+}
+
+.left-gap{
+    margin-left: 1px;
+}
+.right-gap{
+    margin-right: 1px;
+}
+
+
+.custom-panel{
+
+
+}
+.patient-table{
+    margin-right: 40px;
+    margin-left: 70px;
+}
+
+.report-table{
+    margin-left: 10px;
+}
+
+.custom-header{
+    background-color: lavender;
+    margin-left: 0px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+/*Selected row*/
+.table tr.active td {
+    background-color:#123456 !important;
+    color: white;
+  }
+
+
+/*Scrollable table*/
+.table-fixed thead {
+    width: 97%;
+  }
+  .table-fixed tbody {
+    height: 400px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+    display: block;
+  }
+  .table-fixed tbody td, .table-fixed thead > tr> th {
+    float: left;
+    border-bottom-width: 0;
+  }
+  

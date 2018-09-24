@@ -1,0 +1,51 @@
+
+/*Custom css*/
+.total-patient-report {
+    width: 150px!important;
+    float: right;
+    margin-right: 8px;
+}
+
+
+.box-style {
+    border-radius: 4px;
+    background: #73AD21;   
+}
+.doctor-done-btn{
+
+}
+.done-patient-btn{
+    float: right;
+    margin-right: 41px;
+}
+.next-visit-time{
+  display: none
+}
+.next-visit-title{
+    display: none
+}
+
+#history{
+    pointer-events: none
+}
+#prescription{
+    pointer-events: none
+}
+#report{
+    pointer-events: none
+}
+
+/*CARD view*/
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
